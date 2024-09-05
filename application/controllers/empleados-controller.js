@@ -1,4 +1,5 @@
 const { responseSuccess, responseFail } = require('../helpers/response') 
+const { StatusCodes } = require('http-status-codes');
 
 const data = [
     {
@@ -37,6 +38,47 @@ const getEmpleados = async () => {
     return response;
 }
 
+const createEmpleado = async (empleadoData) => {
+    let response = null;
+
+    try {
+        console.log("Empleado Data", empleadoData)
+        response = responseSuccess({ 
+            message: "Empleado Creado!!",
+            data: empleadoData,
+         }, StatusCodes.CREATED)
+    } catch (error) {
+        reponse = responseFail({ 
+            message: "Error inesperado"
+        })
+    }
+
+    return response;
+}
+
+const updateEmpleado = async (empleadoData, id) => {
+    let response = null;
+    let data = {id, empleadoData}
+
+    try {
+        console.log("Empleado Data", empleadoData);
+        console.log("Empleado id", id);
+
+        response = responseSuccess({ 
+            message: "Empleado actualizado!!",
+            data,
+         }, StatusCodes.OK)
+    } catch (error) {
+        reponse = responseFail({ 
+            message: "Error inesperado"
+        })
+    }
+
+    return response;
+}
+
 module.exports = {
-    getEmpleados
+    getEmpleados,
+    createEmpleado,
+    updateEmpleado
 }

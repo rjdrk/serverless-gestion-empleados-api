@@ -19,3 +19,16 @@ functions:
       - http:
           path: empleados
           method: get
+  createEmpleado:
+    handler: infraestructure/handlers/empleados-handler.createEmpleado
+    events:
+      - http:
+          path: empleados
+          method: post
+  updateEmpleado:
+    handler: infraestructure/handlers/empleados-handler.updateEmpleado
+    events:
+      - http:
+          path: empleados/{id}
+          method: put
+  
